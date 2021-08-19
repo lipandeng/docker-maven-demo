@@ -1,0 +1,13 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/quick_coating?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:icu/**/mapper/*.xml
