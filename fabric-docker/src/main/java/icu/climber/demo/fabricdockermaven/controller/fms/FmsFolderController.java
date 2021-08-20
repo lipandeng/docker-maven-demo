@@ -15,7 +15,7 @@ import java.util.List;
  * @Description folder相关接口
  * @Created by lipandeng on 2021/8/19
  */
-@Api(tags = "文件夹相关接口")
+@Api(tags = "文件夹相关")
 @RestController
 @RequestMapping("/pms/folder")
 public class FmsFolderController {
