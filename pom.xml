@@ -9,6 +9,8 @@
 
     <modules>
         <module>fabric-docker</module>
+        <module>spotify-dockerfile</module>
+        <module>springboot-docker</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

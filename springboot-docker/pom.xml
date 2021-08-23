@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>icu.climber.demo</groupId>
+        <artifactId>docker-maven-demo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>icu.climber.demo</groupId>
+    <artifactId>springboot-docker</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>springboot-docker</name>
+    <description>Demo project for Spring Boot</description>
+    <properties>
+        <java.version>11</java.version>
+        <docker.image.prefix>120.78.182.150:5000</docker.image.prefix>
+    </properties>
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <!--镜像名称-->
+                        <name>${docker.image.prefix}/${project.name}:${project.version}</name>
+                        <!--生成镜像后是否推送到镜像仓库-->
+                        <publish>true</publish>
+                    </image>
+                    <docker>
+                        <!--docker环境远程管理地址，非镜像仓库地址-->
+                        <host>http://localhost:2375</host>
+                        <!--不使用TLS访问-->
+                        <tlsVerify>false</tlsVerify>
+                        <!--Docker推送镜像仓库配置-->
+                        <publishRegistry>
+                            <!--推送镜像仓库用户名-->
+                            <username>lipandeng</username>
+                            <!--推送镜像仓库密码-->
+                            <password>1@loPoa56</password>
+                            <!--推送镜像仓库地址-->
+                            <url>http://${docker.image.prefix}</url>
+                        </publishRegistry>
+                    </docker>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

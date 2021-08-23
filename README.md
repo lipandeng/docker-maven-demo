@@ -99,7 +99,7 @@ Spotify官方已经不再推荐使用 [docker-maven-plugin](https://github.com/s
          <server>
             <id>12.78.182.15:5000</id>
             <username>lipandeng</username>
-            <password>1@loPoa56</password>
+            <password>123456</password>
           </server>
     </servers>
    ~~~
@@ -108,6 +108,6 @@ Spotify官方已经不再推荐使用 [docker-maven-plugin](https://github.com/s
    ~~~
    mvn dockerfile:push
    ~~~
-   查看镜像裤即可验证上传是否成功
+   查看私有镜像库即可验证上传是否成功
    
    
