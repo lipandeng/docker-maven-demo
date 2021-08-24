@@ -109,5 +109,57 @@ Spotify官方已经不再推荐使用 [docker-maven-plugin](https://github.com/s
    mvn dockerfile:push
    ~~~
    查看私有镜像库即可验证上传是否成功
+
+## org.springframework.boot.spring-boot-maven-plugin
+子项目:springboot-docker
+
+springboot 2.3.X+ , maven plugin支持将应用程序打包成Docker镜像，无需额外的Dockerfile，只需要一条命令即可，不需要任何改动,这里我们用最新版的2.5.3
+
+使用方法：
+1) 配置pom.xml
+   ~~~
+   <properties>
+       <docker.image.prefix>12.78.18.15:5000</docker.image.prefix>
+   </properties>
+   <plugin>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-maven-plugin</artifactId>
+       <configuration> 
+           <image>
+               <!--镜像名称-->
+               <name>${docker.image.prefix}/${project.name}:${project.version}</name>
+               <!--生成镜像后是否推送到镜像仓库-->
+               <publish>true</publish>
+           </image> 
+           <docker>
+               <!--docker环境远程管理地址，非镜像仓库地址-->
+               <host>http://localhost:2375</host>
+               <!--不使用TLS访问-->
+               <tlsVerify>false</tlsVerify>
+               <!--Docker推送镜像仓库配置-->
+               <publishRegistry>   
+                   <!--推送镜像仓库用户名-->
+                   <username>test</username>
+                   <!--推送镜像仓库密码-->
+                   <password>123456</password>
+                   <!--推送镜像仓库地址-->
+                   <url>http://${docker.image.prefix}</url>      
+               </publishRegistry>      
+           </docker>
+       </configuration> 
+   </plugin>   
+   ~~~
+2) 生成镜像&推送到私有镜像仓库
+   ~~~
+   mvn spring-boot:build-image
+   ~~~
+   也可在idea，直接双击SpringBoot插件的build-image命令即可一键打包并推送到镜像仓库
+   生成镜像工程中由于需要从github下载文件，大概率会不成功，需要多次尝试。
+   最后在本地和私有镜像仓库均有docker镜像，表示buiild-image已经完成。
    
-   
+##总结 
+io.fabric8.docker-maven-plugin 比较灵活(可dockerfile也可pom.xml配置)、支持直接操作容器，且仍在持续更新，推荐使用。
+
+com.spotify.dockerfile-maven-plugin 支持dockerfile 近两年无更新，不支持操作容器。
+
+org.springframework.boot.spring-boot-maven-plugin springboot官方插件，无需额外安装，但需要从github下载相关层文件，失败率高，需要多次尝试。

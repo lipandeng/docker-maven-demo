@@ -14,7 +14,7 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
-        <docker.image.prefix>120.78.182.150:5000</docker.image.prefix>
+        <docker.image.prefix>12.78.18.15:5000</docker.image.prefix>
     </properties>
     <dependencies>
 
@@ -40,9 +40,9 @@
                         <!--Docker推送镜像仓库配置-->
                         <publishRegistry>
                             <!--推送镜像仓库用户名-->
-                            <username>lipandeng</username>
+                            <username>test</username>
                             <!--推送镜像仓库密码-->
-                            <password>1@loPoa56</password>
+                            <password>123456</password>
                             <!--推送镜像仓库地址-->
                             <url>http://${docker.image.prefix}</url>
                         </publishRegistry>
