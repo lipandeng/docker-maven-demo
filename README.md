@@ -157,7 +157,7 @@ springboot 2.3.X+ , maven plugin支持将应用程序打包成Docker镜像，无
    生成镜像工程中由于需要从github下载文件，大概率会不成功，需要多次尝试。
    最后在本地和私有镜像仓库均有docker镜像，表示buiild-image已经完成。
    
-##总结 
+## 总结 
 1. io.fabric8.docker-maven-plugin 比较灵活(可dockerfile也可pom.xml配置)、支持直接操作容器，且仍在持续更新，推荐使用。
 2. com.spotify.dockerfile-maven-plugin 支持dockerfile 近两年无更新，不支持操作容器。
 3. org.springframework.boot.spring-boot-maven-plugin springboot官方插件，无需额外安装，但需要从github下载相关层文件，失败率高，需要多次尝试。
