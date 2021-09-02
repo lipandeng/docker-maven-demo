@@ -1,0 +1,39 @@
+#版本号，建议用3兼容最新版的docker引擎
+version: '3'
+#所有的服务节点
+services:
+  #数据库服务
+  database:
+    #镜像名称
+    image: mysql:latest
+    #容器名称
+    container_name: mysql
+    #端口号 server port:container port
+    ports:
+      - 3307:3306
+    volumes:
+      # 引用定义好的volume
+      - mysql-data:/var/lib/mysql
+    # 参数，相当于docker run -e
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+  #应用服务
+  web-api:
+    image: 120.78.182.150:5000/fabric-docker:1.0-SNAPSHOT
+    container_name: web-api
+    # 依赖数据库，先启动数据库
+    depends_on:
+      - database
+    ports:
+      - 8082:8082
+    #其他服务的别名，在本服务中可以用别名
+    links:
+      - database:db
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /mydata/app/mall-tiny-docker-compose/logs:/var/logs
+# 公共卷定义
+volumes:
+  mysql-data:
+    # external true:表示要提前在外部创建好volume,false: 则volume不用新创建，dockercompose up时候会自动在应用内部创建，卷名称一般会加上前缀docker_
+    external: true
