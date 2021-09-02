@@ -61,6 +61,10 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <!-- 如果docker环境在远程请配置dockerHost、certPath，certPath目录下有3个文件：ca.pem、cert.pem、key.pem，
+                    打开docker远程访问参考链接：https://www.jianshu.com/p/31c3d7ae26a2 -->
+                    <dockerHost>https://12.78.18.15:2376</dockerHost>
+                    <certPath>D:\DevOps\docker-ca</certPath>
                     <!-- Docker 推送镜像仓库地址-->
                     <pushRegistry>http://12.78.18.15:5000</pushRegistry>
                     <images>
